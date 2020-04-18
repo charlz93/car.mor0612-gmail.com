@@ -1,0 +1,5 @@
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DO\bin\Release\TiendaOnline.DO.dll
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DO\bin\Release\TiendaOnline.DO.pdb
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DO\obj\Release\TiendaOnline.DO.csproj.CoreCompileInputs.cache
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DO\obj\Release\TiendaOnline.DO.dll
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DO\obj\Release\TiendaOnline.DO.pdb

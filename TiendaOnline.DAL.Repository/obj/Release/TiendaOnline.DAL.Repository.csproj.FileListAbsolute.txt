@@ -1,0 +1,12 @@
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\TiendaOnline.DAL.Repository.dll.config
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\TiendaOnline.DAL.Repository.dll
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\TiendaOnline.DAL.Repository.pdb
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\EntityFramework.dll
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\EntityFramework.xml
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\obj\Release\TiendaOnline.DAL.Repository.csprojAssemblyReference.cache
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\obj\Release\TiendaOnline.DAL.Repository.csproj.CoreCompileInputs.cache
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\obj\Release\TiendaOnline.DAL.Repository.csproj.CopyComplete
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\obj\Release\TiendaOnline.DAL.Repository.dll
+C:\Users\carmo\Documents\My Web Sites\Sitran\TiendaOnline.DAL.Repository\obj\Release\TiendaOnline.DAL.Repository.pdb

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="BDCARROONLINEEntities-Web.config Connection String" description="BDCARROONLINEEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Model.csdl|res://*/Model.ssdl|res://*/Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sistran-server2020.database.windows.net;initial catalog=BDCARROONLINE;persist security info=True;user id=cmorales;password=Sistran1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\carmo\\Documents\\My\ Web\ Sites\\Sitran\\TiendaOnline\.API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BDCARROONLINEEntities']/@connectionString" />
+  </parameter>
+  <parameter name="BDCARROONLINEEntities1-Web.config Connection String" description="BDCARROONLINEEntities1 Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sistran-server2020.database.windows.net;initial catalog=BDCARROONLINE;persist security info=True;user id=cmorales;password=Sistran1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\carmo\\Documents\\My\ Web\ Sites\\Sitran\\TiendaOnline\.API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='BDCARROONLINEEntities1']/@connectionString" />
+  </parameter>
+</parameters>

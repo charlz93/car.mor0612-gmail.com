@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BDCARROONLINEModelStoreContainer" CdmEntityContainer="BDCARROONLINEEntities">
+    <EntitySetMapping Name="Categorias">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Categoria">
+        <MappingFragment StoreEntitySet="Categorias">
+          <ScalarProperty Name="Id_categoria" ColumnName="Id_categoria" />
+          <ScalarProperty Name="Nombre_categoria" ColumnName="Nombre_categoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Estado">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="Id_estado" ColumnName="Id_estado" />
+          <ScalarProperty Name="Nombre_estado" ColumnName="Nombre_estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facturas">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Factura">
+        <MappingFragment StoreEntitySet="Facturas">
+          <ScalarProperty Name="Id_factura" ColumnName="Id_factura" />
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Id_estado" ColumnName="Id_estado" />
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Producto">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="Id_producto" ColumnName="Id_producto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="Nombre_producto" ColumnName="Nombre_producto" />
+          <ScalarProperty Name="Id_categoria" ColumnName="Id_categoria" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Id_promo" ColumnName="Id_promo" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Id_estado" ColumnName="Id_estado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Promociones">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Promocione">
+        <MappingFragment StoreEntitySet="Promociones">
+          <ScalarProperty Name="Id_promocion" ColumnName="Id_promocion" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+          <ScalarProperty Name="Fecha_inicio" ColumnName="Fecha_inicio" />
+          <ScalarProperty Name="Fecha_fin" ColumnName="Fecha_fin" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registros">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Registro">
+        <MappingFragment StoreEntitySet="Registros">
+          <ScalarProperty Name="Id_registro" ColumnName="Id_registro" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="BDCARROONLINEModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="Id_registro" ColumnName="Id_registro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

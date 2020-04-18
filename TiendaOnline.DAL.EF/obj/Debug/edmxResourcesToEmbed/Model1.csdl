@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BDCARROONLINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id_categoria" />
+    </Key>
+    <Property Name="Id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Categorias" FromRole="Categorias" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Estado">
+    <Key>
+      <PropertyRef Name="Id_estado" />
+    </Key>
+    <Property Name="Id_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Estados" FromRole="Estados" ToRole="Facturas" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Estados" FromRole="Estados" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="Id_factura" />
+    </Key>
+    <Property Name="Id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_producto" Type="Int32" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Id_estado" Type="Int32" />
+    <Property Name="Id_usuario" Type="Int32" />
+    <Property Name="Procesado" Type="Int32" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_Facturas_Estados" FromRole="Facturas" ToRole="Estados" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Facturas_Productos" FromRole="Facturas" ToRole="Productos" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Facturas_Usuarios" FromRole="Facturas" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id_producto" />
+    </Key>
+    <Property Name="Id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Int32" />
+    <Property Name="Nombre_producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Id_categoria" Type="Int32" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Id_promo" Type="Int32" />
+    <Property Name="Imagen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Id_estado" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK_Productos_Categorias" FromRole="Productos" ToRole="Categorias" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_Productos_Estados" FromRole="Productos" ToRole="Estados" />
+    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Productos" FromRole="Productos" ToRole="Facturas" />
+    <NavigationProperty Name="Promocione" Relationship="Self.FK_Productos_Promociones" FromRole="Productos" ToRole="Promociones" />
+  </EntityType>
+  <EntityType Name="Promocione">
+    <Key>
+      <PropertyRef Name="Id_promocion" />
+    </Key>
+    <Property Name="Id_promocion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descuento" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Fecha_inicio" Type="DateTime" Precision="3" />
+    <Property Name="Fecha_fin" Type="DateTime" Precision="3" />
+    <Property Name="Descripcion" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Promociones" FromRole="Promociones" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Registro">
+    <Key>
+      <PropertyRef Name="Id_registro" />
+    </Key>
+    <Property Name="Id_registro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombres" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Registros" FromRole="Registros" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Id_registro" Type="Int32" />
+    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Usuarios" FromRole="Usuarios" ToRole="Facturas" />
+    <NavigationProperty Name="Registro" Relationship="Self.FK_Usuarios_Registros" FromRole="Usuarios" ToRole="Registros" />
+  </EntityType>
+  <Association Name="FK_Productos_Categorias">
+    <End Role="Categorias" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Productos" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categorias">
+        <PropertyRef Name="Id_categoria" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="Id_categoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facturas_Estados">
+    <End Role="Estados" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="Id_estado" />
+      </Principal>
+      <Dependent Role="Facturas">
+        <PropertyRef Name="Id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Estados">
+    <End Role="Estados" Type="Self.Estado" Multiplicity="0..1" />
+    <End Role="Productos" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estados">
+        <PropertyRef Name="Id_estado" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="Id_estado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facturas_Productos">
+    <End Role="Productos" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="Facturas">
+        <PropertyRef Name="Id_producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facturas_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="0..1" />
+    <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuario" />
+      </Principal>
+      <Dependent Role="Facturas">
+        <PropertyRef Name="Id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Promociones">
+    <End Role="Promociones" Type="Self.Promocione" Multiplicity="0..1" />
+    <End Role="Productos" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Promociones">
+        <PropertyRef Name="Id_promocion" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="Id_promo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Registros">
+    <End Role="Registros" Type="Self.Registro" Multiplicity="0..1" />
+    <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registros">
+        <PropertyRef Name="Id_registro" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="Id_registro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BDCARROONLINEEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categorias" EntityType="Self.Categoria" />
+    <EntitySet Name="Estados" EntityType="Self.Estado" />
+    <EntitySet Name="Facturas" EntityType="Self.Factura" />
+    <EntitySet Name="Productos" EntityType="Self.Producto" />
+    <EntitySet Name="Promociones" EntityType="Self.Promocione" />
+    <EntitySet Name="Registros" EntityType="Self.Registro" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Productos_Categorias" Association="Self.FK_Productos_Categorias">
+      <End Role="Categorias" EntitySet="Categorias" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facturas_Estados" Association="Self.FK_Facturas_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Facturas" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Estados" Association="Self.FK_Productos_Estados">
+      <End Role="Estados" EntitySet="Estados" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facturas_Productos" Association="Self.FK_Facturas_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Facturas" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facturas_Usuarios" Association="Self.FK_Facturas_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Facturas" EntitySet="Facturas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Promociones" Association="Self.FK_Productos_Promociones">
+      <End Role="Promociones" EntitySet="Promociones" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Registros" Association="Self.FK_Usuarios_Registros">
+      <End Role="Registros" EntitySet="Registros" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
