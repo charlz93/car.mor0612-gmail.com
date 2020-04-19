@@ -11,6 +11,6 @@ namespace TiendaOnline.DO.Objects
 
         public int Id_categoria { get; set; }
         public string Nombre_categoria { get; set; }
-        public virtual ICollection<Producto> Productos { get; set; }
+        //public virtual ICollection<Producto> Productos { get; set; }
     }
 }

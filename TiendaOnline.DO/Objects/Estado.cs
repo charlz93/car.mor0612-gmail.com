@@ -10,7 +10,6 @@ namespace TiendaOnline.DO.Objects
     {
         public int Id_estado { get; set; }
         public string Nombre_estado { get; set; }
-        public virtual ICollection<Factura> Facturas { get; set; }
-        public virtual ICollection<Producto> Productos { get; set; }
+
     }
 }

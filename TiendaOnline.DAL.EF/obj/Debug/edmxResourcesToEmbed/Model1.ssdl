@@ -14,18 +14,29 @@
     <Property Name="Id_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre_estado" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="Facturas">
+  <EntityType Name="Factura_cab">
     <Key>
-      <PropertyRef Name="Id_factura" />
+      <PropertyRef Name="Id_factura_cab" />
     </Key>
-    <Property Name="Id_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Id_producto" Type="int" />
-    <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="Cantidad" Type="int" />
+    <Property Name="Id_factura_cab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_usuario" Type="int" />
     <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Id_estado" Type="int" />
-    <Property Name="Id_usuario" Type="int" />
+    <Property Name="Total_imp" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Procesado" Type="int" />
+    <Property Name="Fecha_Fac" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Factura_lin">
+    <Key>
+      <PropertyRef Name="Id_factura_lin" />
+    </Key>
+    <Property Name="Id_factura_lin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_producto" Type="int" />
+    <Property Name="Precio" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Impuesto" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Cantidad" Type="int" />
+    <Property Name="Id_Factura_Cab" Type="int" Nullable="false" />
+    <Property Name="Fecha_insert" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Productos">
     <Key>
@@ -60,6 +71,7 @@
     <Property Name="Apellidos" Type="varchar" MaxLength="200" />
     <Property Name="Correo" Type="varchar" MaxLength="200" />
     <Property Name="sexo" Type="char" MaxLength="1" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -70,38 +82,50 @@
     <Property Name="clave" Type="varchar" MaxLength="50" />
     <Property Name="Id_registro" Type="int" />
   </EntityType>
+  <Association Name="FK_Facturas_Cab_Lin">
+    <End Role="Factura_cab" Type="Self.Factura_cab" Multiplicity="1" />
+    <End Role="Factura_lin" Type="Self.Factura_lin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factura_cab">
+        <PropertyRef Name="Id_factura_cab" />
+      </Principal>
+      <Dependent Role="Factura_lin">
+        <PropertyRef Name="Id_Factura_Cab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Facturas_Estados">
     <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
-    <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+    <End Role="Factura_cab" Type="Self.Factura_cab" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Estados">
         <PropertyRef Name="Id_estado" />
       </Principal>
-      <Dependent Role="Facturas">
+      <Dependent Role="Factura_cab">
         <PropertyRef Name="Id_estado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Facturas_Productos">
     <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
-    <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+    <End Role="Factura_lin" Type="Self.Factura_lin" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Productos">
         <PropertyRef Name="Id_producto" />
       </Principal>
-      <Dependent Role="Facturas">
+      <Dependent Role="Factura_lin">
         <PropertyRef Name="Id_producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Facturas_Usuarios">
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
-    <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+    <End Role="Factura_cab" Type="Self.Factura_cab" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
         <PropertyRef Name="Id_usuario" />
       </Principal>
-      <Dependent Role="Facturas">
+      <Dependent Role="Factura_cab">
         <PropertyRef Name="Id_usuario" />
       </Dependent>
     </ReferentialConstraint>
@@ -157,22 +181,27 @@
   <EntityContainer Name="BDCARROONLINEModelStoreContainer">
     <EntitySet Name="Categorias" EntityType="Self.Categorias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Factura_cab" EntityType="Self.Factura_cab" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Factura_lin" EntityType="Self.Factura_lin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Promociones" EntityType="Self.Promociones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Registros" EntityType="Self.Registros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Facturas_Cab_Lin" Association="Self.FK_Facturas_Cab_Lin">
+      <End Role="Factura_cab" EntitySet="Factura_cab" />
+      <End Role="Factura_lin" EntitySet="Factura_lin" />
+    </AssociationSet>
     <AssociationSet Name="FK_Facturas_Estados" Association="Self.FK_Facturas_Estados">
       <End Role="Estados" EntitySet="Estados" />
-      <End Role="Facturas" EntitySet="Facturas" />
+      <End Role="Factura_cab" EntitySet="Factura_cab" />
     </AssociationSet>
     <AssociationSet Name="FK_Facturas_Productos" Association="Self.FK_Facturas_Productos">
       <End Role="Productos" EntitySet="Productos" />
-      <End Role="Facturas" EntitySet="Facturas" />
+      <End Role="Factura_lin" EntitySet="Factura_lin" />
     </AssociationSet>
     <AssociationSet Name="FK_Facturas_Usuarios" Association="Self.FK_Facturas_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Facturas" EntitySet="Facturas" />
+      <End Role="Factura_cab" EntitySet="Factura_cab" />
     </AssociationSet>
     <AssociationSet Name="FK_Productos_Categorias" Association="Self.FK_Productos_Categorias">
       <End Role="Categorias" EntitySet="Categorias" />

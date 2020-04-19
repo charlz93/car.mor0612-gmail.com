@@ -11,7 +11,7 @@ namespace TiendaOnline.DAL
 {
     public class Registro : ICRUD<data.Registro>
     {
-        private Repository.Repository<data.Registro> _repository = new Repository.Repository<data.Registro>(new BDCARROONLINEEntities1());
+        private Repository.Repository<data.Registro> _repository = new Repository.Repository<data.Registro>(new BDCARROONLINEEntities());
         public void Delete(data.Registro t)
         {
             try

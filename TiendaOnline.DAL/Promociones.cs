@@ -11,7 +11,7 @@ namespace TiendaOnline.DAL
 {
     public class Promociones : ICRUD<data.Promocione>
     {
-        private Repository.Repository<data.Promocione> _repository = new Repository.Repository<data.Promocione>(new BDCARROONLINEEntities1());
+        private Repository.Repository<data.Promocione> _repository = new Repository.Repository<data.Promocione>(new BDCARROONLINEEntities());
         public void Delete(data.Promocione t)
         {
             try

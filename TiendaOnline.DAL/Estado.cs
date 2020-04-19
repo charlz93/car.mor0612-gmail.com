@@ -11,7 +11,7 @@ namespace TiendaOnline.DAL
 {
     public class Estado : ICRUD<data.Estado>
     {
-        private Repository.Repository<data.Estado> _repository = new Repository.Repository<data.Estado>(new BDCARROONLINEEntities1());
+        private Repository.Repository<data.Estado> _repository = new Repository.Repository<data.Estado>(new BDCARROONLINEEntities());
         public void Delete(data.Estado t)
         {
             try

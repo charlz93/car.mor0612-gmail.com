@@ -13,37 +13,37 @@ namespace TiendaOnline.API.Controllers
     {
         [Route("api/Registro/GetAll/")]
         [HttpGet]
-        public IEnumerable<ent.Categoria> GetAll()
+        public IEnumerable<ent.Registro> GetAll()
         {
-            return new TiendaOnline.BS.Categoria().GetAll();
+            return new TiendaOnline.BS.Registro().GetAll();
         }
 
         [Route("api/Registro/GetOneById/5")]
         [HttpGet]
-        public ent.Categoria GetOneById(int id)
+        public ent.Registro GetOneById(int id)
         {
-            return new TiendaOnline.BS.Categoria().GetOneById(id);
+            return new TiendaOnline.BS.Registro().GetOneById(id);
         }
 
         [Route("api/Registro/Delete")]
         [HttpPost]
-        public void Delete(ent.Categoria t)
+        public void Delete(ent.Registro t)
         {
-            new TiendaOnline.BS.Categoria().Delete(t);
+            new TiendaOnline.BS.Registro().Delete(t);
         }
 
         [Route("api/Registro/Updated")]
         [HttpPost]
-        public void Updated(ent.Categoria t)
+        public void Updated(ent.Registro t)
         {
-            new TiendaOnline.BS.Categoria().Updated(t);
+            new TiendaOnline.BS.Registro().Updated(t);
         }
 
         [Route("api/Registro/Insert")]
         [HttpPost]
-        public void Insert(ent.Categoria t)
+        public void Insert(ent.Registro t)
         {
-            new TiendaOnline.BS.Categoria().Insert(t);
+            new TiendaOnline.BS.Registro().Insert(t);
         }
     }
 }

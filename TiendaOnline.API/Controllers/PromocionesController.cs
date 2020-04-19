@@ -13,37 +13,37 @@ namespace TiendaOnline.API.Controllers
     {
         [Route("api/Promociones/GetAll/")]
         [HttpGet]
-        public IEnumerable<ent.Categoria> GetAll()
+        public IEnumerable<ent.Promociones> GetAll()
         {
-            return new TiendaOnline.BS.Categoria().GetAll();
+            return new TiendaOnline.BS.Promociones().GetAll();
         }
 
         [Route("api/Promociones/GetOneById/5")]
         [HttpGet]
-        public ent.Categoria GetOneById(int id)
+        public ent.Promociones GetOneById(int id)
         {
-            return new TiendaOnline.BS.Categoria().GetOneById(id);
+            return new TiendaOnline.BS.Promociones().GetOneById(id);
         }
 
         [Route("api/Promociones/Delete")]
         [HttpPost]
-        public void Delete(ent.Categoria t)
+        public void Delete(ent.Promociones t)
         {
-            new TiendaOnline.BS.Categoria().Delete(t);
+            new TiendaOnline.BS.Promociones().Delete(t);
         }
 
         [Route("api/Promociones/Updated")]
         [HttpPost]
-        public void Updated(ent.Categoria t)
+        public void Updated(ent.Promociones t)
         {
-            new TiendaOnline.BS.Categoria().Updated(t);
+            new TiendaOnline.BS.Promociones().Updated(t);
         }
 
         [Route("api/Promociones/Insert")]
         [HttpPost]
-        public void Insert(ent.Categoria t)
+        public void Insert(ent.Promociones t)
         {
-            new TiendaOnline.BS.Categoria().Insert(t);
+            new TiendaOnline.BS.Promociones().Insert(t);
         }
     }
 }

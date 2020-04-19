@@ -17,7 +17,7 @@ namespace TiendaOnline.DAL.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Producto()
         {
-            this.Facturas = new HashSet<Factura>();
+            this.Factura_lin = new HashSet<Factura_lin>();
         }
     
         public int Id_producto { get; set; }
@@ -33,7 +33,7 @@ namespace TiendaOnline.DAL.EF
         public virtual Categoria Categoria { get; set; }
         public virtual Estado Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factura> Facturas { get; set; }
+        public virtual ICollection<Factura_lin> Factura_lin { get; set; }
         public virtual Promocione Promocione { get; set; }
     }
 }

@@ -14,24 +14,37 @@
     </Key>
     <Property Name="Id_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Estados" FromRole="Estados" ToRole="Facturas" />
+    <NavigationProperty Name="Factura_cab" Relationship="Self.FK_Facturas_Estados" FromRole="Estados" ToRole="Factura_cab" />
     <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Estados" FromRole="Estados" ToRole="Productos" />
   </EntityType>
-  <EntityType Name="Factura">
+  <EntityType Name="Factura_cab">
     <Key>
-      <PropertyRef Name="Id_factura" />
+      <PropertyRef Name="Id_factura_cab" />
     </Key>
-    <Property Name="Id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Id_producto" Type="Int32" />
-    <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Id_factura_cab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_usuario" Type="Int32" />
     <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Id_estado" Type="Int32" />
-    <Property Name="Id_usuario" Type="Int32" />
+    <Property Name="Total_imp" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Procesado" Type="Int32" />
-    <NavigationProperty Name="Estado" Relationship="Self.FK_Facturas_Estados" FromRole="Facturas" ToRole="Estados" />
-    <NavigationProperty Name="Producto" Relationship="Self.FK_Facturas_Productos" FromRole="Facturas" ToRole="Productos" />
-    <NavigationProperty Name="Usuario" Relationship="Self.FK_Facturas_Usuarios" FromRole="Facturas" ToRole="Usuarios" />
+    <Property Name="Fecha_Fac" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Estado" Relationship="Self.FK_Facturas_Estados" FromRole="Factura_cab" ToRole="Estados" />
+    <NavigationProperty Name="Factura_lin" Relationship="Self.FK_Facturas_Cab_Lin" FromRole="Factura_cab" ToRole="Factura_lin" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Facturas_Usuarios" FromRole="Factura_cab" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Factura_lin">
+    <Key>
+      <PropertyRef Name="Id_factura_lin" />
+    </Key>
+    <Property Name="Id_factura_lin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_producto" Type="Int32" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Impuesto" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Cantidad" Type="Int32" />
+    <Property Name="Id_Factura_Cab" Type="Int32" Nullable="false" />
+    <Property Name="Fecha_insert" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Factura_cab" Relationship="Self.FK_Facturas_Cab_Lin" FromRole="Factura_lin" ToRole="Factura_cab" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Facturas_Productos" FromRole="Factura_lin" ToRole="Productos" />
   </EntityType>
   <EntityType Name="Producto">
     <Key>
@@ -48,7 +61,7 @@
     <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Categoria" Relationship="Self.FK_Productos_Categorias" FromRole="Productos" ToRole="Categorias" />
     <NavigationProperty Name="Estado" Relationship="Self.FK_Productos_Estados" FromRole="Productos" ToRole="Estados" />
-    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Productos" FromRole="Productos" ToRole="Facturas" />
+    <NavigationProperty Name="Factura_lin" Relationship="Self.FK_Facturas_Productos" FromRole="Productos" ToRole="Factura_lin" />
     <NavigationProperty Name="Promocione" Relationship="Self.FK_Productos_Promociones" FromRole="Productos" ToRole="Promociones" />
   </EntityType>
   <EntityType Name="Promocione">
@@ -71,6 +84,7 @@
     <Property Name="Apellidos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Registros" FromRole="Registros" ToRole="Usuarios" />
   </EntityType>
   <EntityType Name="Usuario">
@@ -81,7 +95,7 @@
     <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Id_registro" Type="Int32" />
-    <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Usuarios" FromRole="Usuarios" ToRole="Facturas" />
+    <NavigationProperty Name="Factura_cab" Relationship="Self.FK_Facturas_Usuarios" FromRole="Usuarios" ToRole="Factura_cab" />
     <NavigationProperty Name="Registro" Relationship="Self.FK_Usuarios_Registros" FromRole="Usuarios" ToRole="Registros" />
   </EntityType>
   <Association Name="FK_Productos_Categorias">
@@ -98,12 +112,12 @@
   </Association>
   <Association Name="FK_Facturas_Estados">
     <End Role="Estados" Type="Self.Estado" Multiplicity="0..1" />
-    <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+    <End Role="Factura_cab" Type="Self.Factura_cab" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Estados">
         <PropertyRef Name="Id_estado" />
       </Principal>
-      <Dependent Role="Facturas">
+      <Dependent Role="Factura_cab">
         <PropertyRef Name="Id_estado" />
       </Dependent>
     </ReferentialConstraint>
@@ -120,27 +134,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Facturas_Productos">
-    <End Role="Productos" Type="Self.Producto" Multiplicity="0..1" />
-    <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+  <Association Name="FK_Facturas_Cab_Lin">
+    <End Role="Factura_cab" Type="Self.Factura_cab" Multiplicity="1" />
+    <End Role="Factura_lin" Type="Self.Factura_lin" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Productos">
-        <PropertyRef Name="Id_producto" />
+      <Principal Role="Factura_cab">
+        <PropertyRef Name="Id_factura_cab" />
       </Principal>
-      <Dependent Role="Facturas">
-        <PropertyRef Name="Id_producto" />
+      <Dependent Role="Factura_lin">
+        <PropertyRef Name="Id_Factura_Cab" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Facturas_Usuarios">
     <End Role="Usuarios" Type="Self.Usuario" Multiplicity="0..1" />
-    <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
+    <End Role="Factura_cab" Type="Self.Factura_cab" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Usuarios">
         <PropertyRef Name="Id_usuario" />
       </Principal>
-      <Dependent Role="Facturas">
+      <Dependent Role="Factura_cab">
         <PropertyRef Name="Id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facturas_Productos">
+    <End Role="Productos" Type="Self.Producto" Multiplicity="0..1" />
+    <End Role="Factura_lin" Type="Self.Factura_lin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_producto" />
+      </Principal>
+      <Dependent Role="Factura_lin">
+        <PropertyRef Name="Id_producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -168,10 +194,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="BDCARROONLINEEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="BDCARROONLINEEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categorias" EntityType="Self.Categoria" />
     <EntitySet Name="Estados" EntityType="Self.Estado" />
-    <EntitySet Name="Facturas" EntityType="Self.Factura" />
+    <EntitySet Name="Factura_cab" EntityType="Self.Factura_cab" />
+    <EntitySet Name="Factura_lin" EntityType="Self.Factura_lin" />
     <EntitySet Name="Productos" EntityType="Self.Producto" />
     <EntitySet Name="Promociones" EntityType="Self.Promocione" />
     <EntitySet Name="Registros" EntityType="Self.Registro" />
@@ -182,19 +209,23 @@
     </AssociationSet>
     <AssociationSet Name="FK_Facturas_Estados" Association="Self.FK_Facturas_Estados">
       <End Role="Estados" EntitySet="Estados" />
-      <End Role="Facturas" EntitySet="Facturas" />
+      <End Role="Factura_cab" EntitySet="Factura_cab" />
     </AssociationSet>
     <AssociationSet Name="FK_Productos_Estados" Association="Self.FK_Productos_Estados">
       <End Role="Estados" EntitySet="Estados" />
       <End Role="Productos" EntitySet="Productos" />
     </AssociationSet>
-    <AssociationSet Name="FK_Facturas_Productos" Association="Self.FK_Facturas_Productos">
-      <End Role="Productos" EntitySet="Productos" />
-      <End Role="Facturas" EntitySet="Facturas" />
+    <AssociationSet Name="FK_Facturas_Cab_Lin" Association="Self.FK_Facturas_Cab_Lin">
+      <End Role="Factura_cab" EntitySet="Factura_cab" />
+      <End Role="Factura_lin" EntitySet="Factura_lin" />
     </AssociationSet>
     <AssociationSet Name="FK_Facturas_Usuarios" Association="Self.FK_Facturas_Usuarios">
       <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Facturas" EntitySet="Facturas" />
+      <End Role="Factura_cab" EntitySet="Factura_cab" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facturas_Productos" Association="Self.FK_Facturas_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Factura_lin" EntitySet="Factura_lin" />
     </AssociationSet>
     <AssociationSet Name="FK_Productos_Promociones" Association="Self.FK_Productos_Promociones">
       <End Role="Promociones" EntitySet="Promociones" />

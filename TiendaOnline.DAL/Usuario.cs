@@ -11,7 +11,7 @@ namespace TiendaOnline.DAL
 {
     public class Usuario : ICRUD<data.Usuario>
     {
-        private Repository.Repository<data.Usuario> _repository = new Repository.Repository<data.Usuario>(new BDCARROONLINEEntities1());
+        private Repository.Repository<data.Usuario> _repository = new Repository.Repository<data.Usuario>(new BDCARROONLINEEntities());
         public void Delete(data.Usuario t)
         {
             try

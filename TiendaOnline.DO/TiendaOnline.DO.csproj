@@ -44,7 +44,8 @@
     <Compile Include="Interfaces\ICRUD.cs" />
     <Compile Include="Objects\Categoria.cs" />
     <Compile Include="Objects\Estado.cs" />
-    <Compile Include="Objects\Factura.cs" />
+    <Compile Include="Objects\Factura_cab.cs" />
+    <Compile Include="Objects\Factura_lin.cs" />
     <Compile Include="Objects\Producto.cs" />
     <Compile Include="Objects\Promociones.cs" />
     <Compile Include="Objects\Registro.cs" />

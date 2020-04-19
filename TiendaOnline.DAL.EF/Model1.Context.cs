@@ -13,10 +13,10 @@ namespace TiendaOnline.DAL.EF
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BDCARROONLINEEntities1 : DbContext
+    public partial class BDCARROONLINEEntities : DbContext
     {
-        public BDCARROONLINEEntities1()
-            : base("name=BDCARROONLINEEntities1")
+        public BDCARROONLINEEntities()
+            : base("name=BDCARROONLINEEntities")
         {
         }
     
@@ -27,7 +27,8 @@ namespace TiendaOnline.DAL.EF
     
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Estado> Estados { get; set; }
-        public virtual DbSet<Factura> Facturas { get; set; }
+        public virtual DbSet<Factura_cab> Factura_cab { get; set; }
+        public virtual DbSet<Factura_lin> Factura_lin { get; set; }
         public virtual DbSet<Producto> Productos { get; set; }
         public virtual DbSet<Promocione> Promociones { get; set; }
         public virtual DbSet<Registro> Registros { get; set; }
